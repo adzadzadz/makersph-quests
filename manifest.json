@@ -1,0 +1,7 @@
+{
+  "name": "quests",
+  "short_name": "quests",
+  "description": "Quest generating app for travellers and bored individuals.",
+  "start_url": "/",
+  "display": "standalone"
+}

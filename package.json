@@ -1,0 +1,28 @@
+{
+  "name": "quests",
+  "description": "Quest generating app for travellers and bored individuals.",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "@adzadzadz/global-variable": "^3.0.1-alpha",
+    "@adzadzadz/paper-expand": "^1.0.0",
+    "@polymer/app-layout": "^3.0.2",
+    "@polymer/app-route": "^3.0.2",
+    "@polymer/iron-icons": "^3.0.1",
+    "@polymer/iron-pages": "^3.0.1",
+    "@polymer/paper-button": "^3.0.1",
+    "@polymer/paper-card": "^3.0.1",
+    "@polymer/paper-icon-button": "^3.0.1",
+    "@polymer/paper-input": "^3.0.1",
+    "@polymer/paper-item": "^3.0.1",
+    "@polymer/paper-styles": "^3.0.1",
+    "@polymer/polymer": "^3.1.0",
+    "@polymer/paper-checkbox": "^3.1.0"
+  },
+  "devDependencies": {
+    "@polymer/test-fixture": "^4.0.2",
+    "@webcomponents/webcomponentsjs": "^2.2.1",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "wct-mocha": "^1.0.0"
+  }
+}
