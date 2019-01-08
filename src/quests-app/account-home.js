@@ -1,14 +1,18 @@
 import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
-import {ApiMixin} from '../mixin/api-mixin.js';
+import {ApiMixin} from '../mixins/api-mixin.js';
 import '@polymer/paper-card/paper-card.js';
 import '@adzadzadz/paper-expand/paper-expand.js';
+import '@adzadzadz/global-variable/global-variable.js';
 import '@polymer/paper-input/paper-input.js';
-import { GlobalStyle } from '../style/global-style.js';
+import { GlobalStyle } from '../styles/global-style.js';
 
 class AccountHome extends ApiMixin(PolymerElement) {
 
   static get template() {
     return html`
+      <global-variable key="firebase" value={{firebase}}></global-variable>
+      <global-variable key="firestore" value={{firestore}}></global-variable>
+
       ${GlobalStyle}
       
       <style>
@@ -59,7 +63,7 @@ class AccountHome extends ApiMixin(PolymerElement) {
   connectedCallback() {
     super.connectedCallback();
     // Fetch firebase user
-    this.fetchUser();  
+    this.fetchUser(this.firebase);
   }
 
   _updateUData(e) {
@@ -68,13 +72,13 @@ class AccountHome extends ApiMixin(PolymerElement) {
     let key = elem.name;
     data[key] = elem.value;
 
-    firestore.collection("users").doc(this.uid)
+    this.firestore.collection("users").doc(this.uid)
       .update(data);
   }
 
   _uidChange(uid) {
     let app = this;
-    firestore.collection("users").doc(uid)
+    this.firestore.collection("users").doc(uid)
       .onSnapshot(function(doc) {
         app.set('user', doc.data());
         // console.log('User: ', app.user);

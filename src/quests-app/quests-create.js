@@ -1,7 +1,7 @@
 import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
-import {ApiMixin} from '../mixin/api-mixin.js';
+import {ApiMixin} from '../mixins/api-mixin.js';
 import '@polymer/paper-input/paper-input.js';
-import { GlobalStyle } from '../style/global-style.js';
+import { GlobalStyle } from '../styles/global-style.js';
 
 class QuestsCreate extends ApiMixin(PolymerElement) {
   static get properties() {

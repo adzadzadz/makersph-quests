@@ -16,7 +16,7 @@
     <script type="module" src="/node_modules/@polymer/polymer/lib/elements/custom-style.js"></script>
     <script type="module" src="/node_modules/@polymer/paper-styles/color.js"></script>
     <script type="module" src="/node_modules/@polymer/paper-styles/typography.js"></script>
-    <script type="module" src="./src/quests-app/js/quests-app.js"></script>
+    <script type="module" src="./src/quests-app/quests-app.js"></script>
 
     <custom-style>
       <style>
@@ -52,35 +52,5 @@
   </head>
   <body>
     <quests-app></quests-app>
-
-     <!-- Firebase -->
-     <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-app.js"></script>
-     <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-firestore.js"></script>
-     <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-auth.js"></script>
-
-     <!-- Add additional services that you want to use -->
-     <!-- <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-database.js"></script>
-     <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-messaging.js"></script>
-     <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-functions.js"></script> -->
-     <!-- <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-storage.js"></script> -->
- 
-     <script>
-        // Initialize Firebase
-        var config = {
-          apiKey: "AIzaSyC3nR-yo64orQl8cV75RBA-y-npXqa7MgI",
-          authDomain: "quest-84a95.firebaseapp.com",
-          projectId: "quest-84a95",
-          storageBucket: "quest-84a95.appspot.com",
-          messagingSenderId: "530938614584"
-        };
-        firebase.initializeApp(config);
-
-        const firestore = firebase.firestore();
-        const settings = {
-          /* your settings... */ 
-          timestampsInSnapshots: true
-        };
-        firestore.settings(settings);
-     </script>
   </body>
 </html>

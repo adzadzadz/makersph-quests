@@ -1,4 +1,5 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
+import '@adzadzadz/global-variable/global-variable.js';
 import '@polymer/app-route/app-location.js';
 import '@polymer/app-route/app-route.js';
 import '@polymer/paper-input/paper-input.js';
@@ -9,12 +10,15 @@ import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/iron-icons/iron-icons.js';
 import '@polymer/paper-item/paper-icon-item.js';
 import '@polymer/iron-pages/iron-pages.js';
-import {ApiMixin} from '../mixin/api-mixin.js';
-import {GlobalStyle} from '../style/global-style.js';
+import '../components/firebase-helper.js';
+import {ApiMixin} from '../mixins/api-mixin.js';
+import {GlobalStyle} from '../styles/global-style.js';
 
 class QuestsApp extends ApiMixin(PolymerElement) {
   static get template() {
     return html`
+    <firebase-helper></firebase-helper>
+
     ${GlobalStyle}
     <style>
       #content {
@@ -51,6 +55,8 @@ class QuestsApp extends ApiMixin(PolymerElement) {
         bottom: -40px;
       }
     </style>
+    
+    <global-variable key="auth" value="{{auth}}"></global-variable>
     <app-location id="appLocation" route="{{route}}" query-params="{{queryParams}}"></app-location>
     <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute1}}"></app-route>
     <app-route route="{{subroute1}}" pattern="/:action" data="{{routeData2}}" tail="{{subroute2}}"></app-route>
@@ -176,7 +182,7 @@ class QuestsApp extends ApiMixin(PolymerElement) {
   connectedCallback() {
     super.connectedCallback();
     let app = this;
-    firebase.auth().onAuthStateChanged(function(user) {
+    this.auth.onAuthStateChanged(function(user) {
       if (!user) {
         import('./quests-login.js').then(null, app._showPage404.bind(this));
         app.set('selected', 'login');
@@ -189,7 +195,7 @@ class QuestsApp extends ApiMixin(PolymerElement) {
 
   __signOutGoogle() {
     let app = this;
-    firebase.auth().signOut().then(function() {
+    this.auth.signOut().then(function() {
       app.set("selected", 'login');
     }).catch(function(error) {
       console.log("There has been an issue signing out.");

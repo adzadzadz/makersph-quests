@@ -1,10 +1,12 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
-import {ApiMixin} from '../mixin/api-mixin.js';
+import '@adzadzadz/global-variable/global-variable.js';
+import {ApiMixin} from '../mixins/api-mixin.js';
 import '@polymer/paper-button/paper-button.js';
 
 class QuestsLogin extends ApiMixin(PolymerElement) {
   static get template() {
     return html`
+      <global-variable key="firebase" value={{firebase}}></global-variable>
       <style>
         .container {
           width: 100%;
@@ -51,17 +53,12 @@ class QuestsLogin extends ApiMixin(PolymerElement) {
     `;
   }
 
-  constructor() {
-    super();
-    
-  }
-
   ready() {
     super.ready();
 
     let googleIn = this.$.googleIn;
 
-    firebase.auth().onAuthStateChanged(function(user) {
+    this.firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         googleIn.hidden = true;
       } else {
@@ -71,12 +68,12 @@ class QuestsLogin extends ApiMixin(PolymerElement) {
   }
 
   __signInGoogle() {
-    var provider = new firebase.auth.GoogleAuthProvider();
+    var provider = new this.firebase.auth.GoogleAuthProvider();
     provider.addScope('https://www.googleapis.com/auth/admin.directory.customer');
     
     let app = this;
 
-    firebase.auth().signInWithPopup(provider).then(function(result) {
+    this.firebase.auth().signInWithPopup(provider).then(function(result) {
       // This gives you a Google Access Token. You can use it to access the Google API.
       var token = result.credential.accessToken;
       // If user exists, do nothing
@@ -98,8 +95,8 @@ class QuestsLogin extends ApiMixin(PolymerElement) {
 
   __checkUserExists() {    
     let app = this;
-    var user = firebase.auth().currentUser;
-    var docRef = firestore.collection("users").doc(user.uid);
+    var user = this.firebase.auth().currentUser;
+    var docRef = this.firestore.collection("users").doc(user.uid);
 
     docRef.get().then(function(doc) {
       if (!doc.exists) {

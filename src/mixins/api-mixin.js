@@ -14,7 +14,7 @@ export const ApiMixin = (superClass) => class extends superClass {
   /**
    * Fetch firebase user
    */
-  fetchUser() {
+  fetchUser(firebase) {
     console.log("Fetching user data.");
     
     let app = this;

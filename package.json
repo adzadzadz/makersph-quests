@@ -4,7 +4,8 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "@adzadzadz/global-variable": "^3.0.1-alpha",
-    "@adzadzadz/paper-expand": "^1.0.0",
+    "firebase": "^5.5.5",
+    "@adzadzadz/paper-expand": "^1.0.1",
     "@polymer/app-layout": "^3.0.2",
     "@polymer/app-route": "^3.0.2",
     "@polymer/iron-icons": "^3.0.1",
